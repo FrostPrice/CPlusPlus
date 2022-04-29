@@ -1,0 +1,16 @@
+#include <iostream>
+#include <locale.h>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "portuguese");
+
+	int number1 = 1, number2 = 1, result, fibonacci;
+
+	for(int i = 3; i <= 20; i++) {
+		fibonacci += result;
+		cout << fibonacci;
+	}
+
+	return 0;
+}
