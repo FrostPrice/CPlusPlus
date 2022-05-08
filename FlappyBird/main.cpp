@@ -38,7 +38,7 @@ int main() {
      
     int bird_x = 5, bird_y = 6, bird_y_old_position;
     int obstaculo_x = 110, obstaculo_y, obstaculo_x_old_position;
-    int obstaculo2_x = obstaculo_x + 30, obstaculo2_y, obstaculo2_x_old_position;
+    int obstaculo2_x = obstaculo_x + 55, obstaculo2_y, obstaculo2_x_old_position;
 
     int tecla; // Para conseguir checar qual tecla o usuário pressionou
     int placar = 0; // Highscore do usuário
