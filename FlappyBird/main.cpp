@@ -102,6 +102,9 @@ int main() {
                 SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
                 cout<<char(190);
 
+                // Armazena a última posição do pássaro
+                bird_y_old_position = bird_y;
+
                 // Posiciona o obstáculo
                 obstaculo_y=1;
                 obstaculo2_y=1;
@@ -137,7 +140,7 @@ int main() {
                         if(obstaculo2_y < tamanho_passagem_2 - 1 || obstaculo2_y > tamanho_passagem_2 + 1) {
                             cout<<char(219);
                         } else {
-                            cout<<"";
+                            cout<<" ";
                         }
                     }
                     obstaculo2_y++;
@@ -169,9 +172,6 @@ int main() {
                 if(bird_y > 20 || bird_y < 0) {
                     playing = false;
                 }
-
-                // Armazena a última posição do pássaro
-                bird_y_old_position = bird_y;
 
                 // Armazena a última posição no eixo X do obstáculo1 e obstáculo2
                 obstaculo_x_old_position = obstaculo_x;
