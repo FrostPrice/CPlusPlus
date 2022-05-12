@@ -59,7 +59,7 @@ int main() {
 
     // Menu inicial
     coord.X = 40; coord.Y = 10; // Seta uma coordenada X e Y
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord); // Seleciona o ponto da coordenada informada. Com o ponto de origem sendo o canto superior esquerdo
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord); // Seleciona o ponto da coordenada informada. Com o ponto de origem sendo o canto superior esquerdo do CMD
     cout << "Bem-vindo ao FlappyBird!"; // Coloca um item na cordenada selecionada
     // (Passos Anteriores se repetem para todos os items que envolvem coordenadas)
     coord.X = 40; coord.Y = 11;
@@ -120,11 +120,11 @@ int main() {
                     coord.X = obstaculo_x;    coord.Y = obstaculo_y;
                     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
                     
-                    // Define a parte do obstáculo que o pássaro não pode passar
+                    // Define a parte do obstáculo que o pássaro NÃO pode passar
                     if(obstaculo_y < tamanho_passagem_1 - 1 || obstaculo_y > tamanho_passagem_1 + 1) {
                         cout<<char(219);
                     } else {
-                        // Define a passagem do obstáculo
+                        // Define a passagem do obstáculo que o pássaro pode passar
                         cout<<" ";
                     }
                     obstaculo_y++;
@@ -147,11 +147,10 @@ int main() {
                 // E se a coordenada Y do pássaro é diferente da coordenada da passagem do obstáculo
                 if(bird_x == obstaculo_x && (bird_y < tamanho_passagem_1 - 1 || bird_y > tamanho_passagem_1 + 1)) {
                     playing = false;
-                } else if(bird_x == obstaculo2_x && (bird_y < tamanho_passagem_2 - 1 || bird_y > tamanho_passagem_2 + 1)) { // Verifica a colisão com obstaculo 2
+                } else if(bird_x == obstaculo2_x && (bird_y < tamanho_passagem_2 - 1 || bird_y > tamanho_passagem_2 + 1)) { // Verifica a colisão com obstaculo 2, seguindo os mesmos items do obstáculo1
                     playing = false;
                 }
                 
-                // Verifica o comando do jogador
                 if (kbhit()) { // Verifica se uma tecla foi pressionada
                     tecla=getch(); // Verifica comando do jogador
                 }
@@ -178,9 +177,8 @@ int main() {
                 obstaculo_x_old_position = obstaculo_x;
                 obstaculo2_x_old_position = obstaculo2_x;
 
-                //  Obstáculo1 avança uma posição para esquerda
+                //  Obstáculo1 e Obstáculo2 avança uma posição para esquerda
                 obstaculo_x--;
-                // Mesma coisa ocorre para o obstáculo2
                 obstaculo2_x--;
 
                 // Velocidade atual do jogo
@@ -192,7 +190,7 @@ int main() {
                     if (placar != 0 && placar % 5 == 0) {
                     // Se o valor da pontuação for diferente de zero e ser multiplo de cinco
                     // a velocidade aumenta a cada cinco obstaculos passados
-                    velocidade = velocidade * 0.75; // A quantidade que a velocidade aumenta é de 25%
+                    velocidade = velocidade - 25; // Aumenta a velocidade do jogo em 25 segundos
                     }
                 }
             
