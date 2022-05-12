@@ -188,9 +188,9 @@ int main() {
                 if (bird_x == obstaculo_x + 1 or bird_x == obstaculo2_x + 1) {
                     placar++; // Adiciona +1 ao placar
                     if (placar != 0 && placar % 5 == 0) {
-                    // Se o valor da pontuação for diferente de zero e ser multiplo de cinco
-                    // a velocidade aumenta a cada cinco obstaculos passados
-                    velocidade = velocidade - 25; // Aumenta a velocidade do jogo por 25 segundos
+                        // Se o valor da pontuação for diferente de zero e ser multiplo de cinco
+                        // a velocidade aumenta a cada cinco obstaculos passados
+                        velocidade = velocidade - 25; // Aumenta a velocidade do jogo por 25 segundos
                     }
                 }
             
