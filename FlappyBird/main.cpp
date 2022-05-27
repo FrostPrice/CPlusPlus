@@ -45,7 +45,7 @@ int main() {
     int placar = 0; // Highscore do usuário
     int placar_x = 50, placar_y = 22; // Localização do placar
     int tamanho_passagem_1 = rand() % 20; // Gera valores aleatórios de 0 ao 19 para o obstaculo1
-    int tamanho_passagem_2 = rand() % 20; // Gera valores aleatórios de 0 ao 19 para o obstaculo2
+    int tamanho_passagem_2 = rand() % 20+1; // Gera valores aleatórios de 0 ao 19 para o obstaculo2
     float velocidade = 150; // Velocidade em que o jogo esta no momento
 
     bool playing = false; // Determina se o jogo está rodando ou não
