@@ -3,12 +3,10 @@
 
 using namespace std;
 
-#define TAM 2
+#define TAM 4
 
 int main() {
 	setlocale(LC_ALL, "Portuguese");
-
-	srand(time(NULL));
 
 	int mat[TAM][TAM], multiplicationResult[TAM][TAM], vetResult[TAM];
 
@@ -19,27 +17,29 @@ int main() {
 		}
 	}
 
+	// Soma o vetor
 	for(int i = 0; i < TAM; i++) {
-		int lineResult = 0;
+		vetResult[i] = 0; // Zera o valor da linha para a soma
 
 		for(int j = 0; j < TAM; j++) {
-			lineResult += mat[i][j];
+			vetResult[i] += mat[i][j];
 		}
 
-		vetResult[i] = lineResult;
 	}
 
+	// multiplica o vetor com a matriz
 	for(int i = 0; i < TAM; i++) {
 		for(int j = 0; j < TAM; j++) {
 			multiplicationResult[i][j] = vetResult[i] * mat[i][j];
 		}
 	}
 
+	// Exibe no console
 	for(int i = 0; i < TAM; i++) {
 		for(int j = 0; j < TAM; j++) {
-			cout << multiplicationResult[i][j] << "\t";
+			cout << "\t" << multiplicationResult[i][j];
 		}
-		cout << endl;
+		cout << "\t\n";
 	}
 
 	return 0;
