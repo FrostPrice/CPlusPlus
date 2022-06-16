@@ -35,51 +35,45 @@ int main()
     // Define o modo de jogo
      //modoJogo = rand() % 4;   
 
-    // switch (modoJogo) {    // 0 - Jogo normal, 1 - Jogo com gabarito, 2 - Jogo com gabarito e jogador, 3 - Jogo com gabarito e jogador e jogador
-    //     case 0: // Modo de jogo: Sem modificação (Cópia)
-    //         for (int i = 0; i < TAM; i++) { // Linhas 
-    //             for (int j = 0; j < TAM; j++) { // Colunas
-    //                 matGabarito[i][j] = matPrincipal[i][j]; 
-    //             }
-    //         }
+    switch (modoJogo) {    // 0 - Jogo normal, 1 - Jogo com gabarito, 2 - Jogo com gabarito e jogador, 3 - Jogo com gabarito e jogador e jogador
+        case 0: // Modo de jogo: Sem modificação (Cópia)
+            for (int i = 0; i < TAM; i++) { // Linhas 
+                for (int j = 0; j < TAM; j++) { // Colunas
+                    matGabarito[i][j] = matPrincipal[i][j]; 
+                }
+            }
 
-    //         break;
-    //     case 1: // Modo de jogo: Transposta da matriz principal
-    //         for (int i = 0; i < TAM; i++) { // Linhas
-    //             for (int j = 0; j < TAM; j++) { // Colunas
-    //                 matGabarito[i][j] = matPrincipal[j][i]; 
-    //             }
-    //         }
+            break;
+        case 1: // Modo de jogo: Transposta da matriz principal
+            for (int i = 0; i < TAM; i++) { // Linhas
+                for (int j = 0; j < TAM; j++) { // Colunas
+                    matGabarito[i][j] = matPrincipal[j][i]; 
+                }
+            }
 
-    //         break;
-    //     case 2: // Modo de jogo: Invertida por linha da matriz principal
-    //         for (int i = 0; i < TAM ; ++i) {
-    //             k--;
-    //             for(int j = 0; j < TAM; j++) {
-    //                 matGabarito[k][j] = matPrincipal[i][j];
-    //             }
-    //         }
+            break;
+        case 2: // Modo de jogo: Invertida por linha da matriz principal
+            for (int i = 0; i < TAM ; ++i) {
+                k--;
+                for(int j = 0; j < TAM; j++) {
+                    matGabarito[k][j] = matPrincipal[i][j];
+                }
+            }
             
-    //         break; 
-    //     case 3: // Modo de jogo: Invertida por coluna da matriz principal
-    //         for (int i = 0; i < TAM ; ++i) { // Linhas
-    //             k--; 
-    //             for(int j = 0; j < TAM; j++) { // Colunas
-    //                 matGabarito[j][k] = matPrincipal[j][i]; 
-    //             }
-    //         }
+            break; 
+        case 3: // Modo de jogo: Invertida por coluna da matriz principal
+            for (int i = 0; i < TAM ; ++i) { // Linhas
+                k--; 
+                for(int j = 0; j < TAM; j++) { // Colunas
+                    matGabarito[j][k] = matPrincipal[j][i]; 
+                }
+            }
             
-    //         break; // Fim do case 3
-    //     default: // Caso não seja nenhum dos casos anteriores
-    //         cout << "Error. Start Panicking!"; // Erro
-    //         system("exit"); // Encerra o programa
-    //         break; // Fim do default
-    // }
-
-     for (int i = 0; i < TAM; i++) {
-        for (int j = 0; j < TAM; j++) {
-            matGabarito[i][j] = matPrincipal[i][j];
-        }
+            break; // Fim do case 3
+        default: // Caso não seja nenhum dos casos anteriores
+            cout << "Error. Start Panicking!"; // Erro
+            system("exit"); // Encerra o programa
+            break; // Fim do default
     }
 
     jogando = true; // Começa o jogo 
