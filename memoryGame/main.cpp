@@ -20,20 +20,21 @@ int main()
     srand(time(NULL));
  
     int matPrincipal[TAM][TAM] = {1, 4, 5, 2, 7, 2, 8, 7, 3, 6, 1, 4, 6, 5, 3, 8}, matGabarito[TAM][TAM], matJogo[TAM][TAM] = {0}; 
+    int k = TAM; // Usado para inverter a coluna ou linha de uma matriz
+    
     int modoJogo; 
+    int quantidadeJogadas = 0;
+    int totalRodadas = TAM * 2 * 3;
+    int acertos = 0; // Define a quantidade de pares que o usuário acertou
 
-    int k = TAM, y=0; 
 
     bool jogando = false;
     bool digitando = false;
-    int quantidadeJogadas = 0;
-    int totalRodadas = TAM * 2 * 3;
-    int acertos = 0;
 
     int posicao_1_linha, posicao_1_coluna, posicao_2_linha, posicao_2_coluna;
 
     // Define o modo de jogo
-     //modoJogo = rand() % 4;   
+    modoJogo = rand() % 4;   
 
     switch (modoJogo) {    // 0 - Jogo normal, 1 - Jogo com gabarito, 2 - Jogo com gabarito e jogador, 3 - Jogo com gabarito e jogador e jogador
         case 0: // Modo de jogo: Sem modificação (Cópia)
@@ -73,6 +74,7 @@ int main()
         default: // Caso não seja nenhum dos casos anteriores
             cout << "Error. Start Panicking!"; // Erro
             system("exit"); // Encerra o programa
+
             break; // Fim do default
     }
 
@@ -94,12 +96,14 @@ int main()
         // region: --- Mostra a Matrix Jogo
         system("clear"); // Limpa a tela
         cout << "Você está na rodada " << quantidadeJogadas << " de " << totalRodadas << endl;
+        cout << "-------------------------\n";
         for (int i = 0; i < TAM; i++) {
             for (int j = 0; j < TAM; j++) {  
                 cout <<  matJogo[i][j] << "\t"; // Mostra a matriz jogo
             }
             cout << "\n"; // Pula uma linha
         }
+        cout << "-------------------------\n";
         // endregion: --- Mostra a Matrix Jogo
        
         // region: --- Input Usuário
@@ -110,7 +114,10 @@ int main()
             cout << "\nDigite o índice da coluna para a primeira posição escolhida: ";
             cin >> posicao_1_coluna; // Recebe o índice da coluna
 
-            if (matJogo[posicao_1_linha][posicao_1_coluna] == matGabarito[posicao_1_linha][posicao_1_coluna]) {
+            if ((posicao_1_linha < 0 || posicao_1_linha > TAM - 1) || (posicao_1_coluna < 0 || posicao_1_coluna > TAM - 1)) {
+                cout <<  "\nEste índice na matriz não existe.\n"; // Mensagem de erro no terminal caso o usuario digite um indice que não existe na matriz.
+                system("read -t 3");
+            } else if (matJogo[posicao_1_linha][posicao_1_coluna] == matGabarito[posicao_1_linha][posicao_1_coluna]) {
                 cout << "Posição já escolhida. Por favor, selecione outra\n";
                 system("read -t 3");
             } else {
@@ -118,14 +125,10 @@ int main()
             }
         }
 
-        if ((posicao_1_linha < 0 || posicao_1_linha > 3) || (posicao_1_coluna < 0 || posicao_1_coluna > 3)) {
-            cout <<  "\nEste índice na matriz não existe.\n"; // Mensagem de erro no terminal caso o usuario digite um indice que não existe na matriz.
-            system("read -t 3");
-        } 
-
         // region: --- Mostra a Matriz Jogo
         system("clear"); // Limpa a tela 
         cout << "Você está na rodada " << quantidadeJogadas << " de " << totalRodadas << endl;
+        cout << "-------------------------\n";
         for (int i = 0; i < TAM; i++) { // Mostra a matriz jogo 
             for (int j = 0; j < TAM; j++) { 
                 if (i == posicao_1_linha && j == posicao_1_coluna) { 
@@ -136,6 +139,7 @@ int main()
             }
             cout << "\n"; 
         }
+        cout << "-------------------------\n";
         // endregion: --- Mostra a Matriz Jogo
         digitando = true;
         while (digitando) {
@@ -144,7 +148,10 @@ int main()
             cout << "\nDigite o índice da coluna para a segunda posição escolhida: ";
             cin >> posicao_2_coluna; // Recebe o índice da segunda coluna
 
-            if (matJogo[posicao_2_linha][posicao_2_coluna] == matGabarito[posicao_2_linha][posicao_2_coluna]) {
+            if ((posicao_2_linha < 0 || posicao_2_linha > TAM - 1) || (posicao_2_coluna < 0 || posicao_2_coluna > TAM - 1)) {
+                cout <<  "\nEste índice na matriz não existe.\n"; // Mensagem de erro no terminal caso o usuario digite um indice que não existe na matriz.
+                system("read -t 3");
+            } else if (matJogo[posicao_2_linha][posicao_2_coluna] == matGabarito[posicao_2_linha][posicao_2_coluna]) {
                 cout << "\nPosição já escolhida. Por favor, selecione outra\n";
                 system("read -t 3");
             } else {
@@ -153,58 +160,55 @@ int main()
         }
         // endregion: --- Input Usuário
 
-        /* 
-            TODOS:
-            - Arrumar a posicao_2 no momento que erra os pares
-            - Verificar por que não está dando o "ìndice não existe"
-        */ 
+        system("clear");
+        cout << "Você está na rodada " << quantidadeJogadas << " de " << totalRodadas << endl;
+        cout << "-------------------------\n";
+        // region: --- Mostra a Matriz Jogo
+        for (int i = 0; i < TAM; i++) { 
+            for (int j = 0; j < TAM; j++) {
+                if (i == posicao_1_linha && j == posicao_1_coluna) { 
+                    cout <<  matGabarito[posicao_1_linha][posicao_1_coluna] << "\t"; // Mostra a matriz gabarito 
+                } else if (i == posicao_2_linha && j == posicao_2_coluna) {
+                    cout <<  matGabarito[posicao_2_linha][posicao_2_coluna] << "\t"; // Mostra a matriz gabarito
+                } else { 
+                    cout << matJogo[i][j] << "\t"; // Mostra a matriz jogo
+                }
+            }
+            cout << "\n";  
+        }
+        cout << "-------------------------\n";
+        // endregion: --- Mostra a Matriz Jogo
 
-        if (matGabarito[posicao_1_linha][posicao_1_coluna] == matGabarito[posicao_2_linha][posicao_2_coluna]) { 
+        if (matGabarito[posicao_1_linha][posicao_1_coluna] == matGabarito[posicao_2_linha][posicao_2_coluna]) { // Verifica se os valores selecionados são Pares
+            acertos++; // Aumenta a quantidade de pares que o usuário acertou
             matJogo[posicao_1_linha][posicao_1_coluna] = matGabarito[posicao_1_linha][posicao_1_coluna];  // Se a primeira posição for igual a segunda, a primeira posição recebe o valor da segunda posição
             matJogo[posicao_2_linha][posicao_2_coluna] = matGabarito[posicao_2_linha][posicao_2_coluna];  // Se a segunda posição for igual a primeira, a segunda posição recebe o valor da primeira posição
-            acertos++;
-            system("clear");
-            cout << "\nJOGADA OK"; // Mensagem de sucesso
-            system("read -t 5");
+            cout << "\tJOGADA OK\n"; // Mensagem de sucesso
         } else {
-            // region: --- Mostra a Matriz Jogo
-            for (int i = 0; i < TAM; i++) { 
-                for (int j = 0; j < TAM; j++) {
-                    if (i == posicao_1_linha && j == posicao_1_coluna) { 
-                        cout <<  matGabarito[posicao_1_linha][posicao_1_coluna] << "\t"; // Mostra a matriz gabarito 
-                    } else if (i == posicao_2_linha && j == posicao_2_coluna) {
-                        cout <<  matGabarito[posicao_2_linha][posicao_2_coluna] << "\t"; // Mostra a matriz gabarito
-                    } else { 
-                        cout << matJogo[i][j] << "\t"; // Mostra a matriz jogo
-                    }
-                }
-                cout << "\n";  
-            }
-            cout << "\nJOGADA NOK"; // Se as posições não forem iguais, a mensagem de erro é mostrada
-            // endregion: --- Mostra a Matriz Jogo
-            system("read -t 5");
+            cout << "\tJOGADA NOK\n"; // Se as posições não forem iguais, a mensagem de erro é mostrada
         }
-       
+        system("read -t 3");
+
+        // Se a quantidade de acertos for igual a quanitdade de pares, ele ganha o jogo
         if (acertos == TAM * 2) {  
-            jogando = false; // Se todas as posições forem iguais, o jogo acaba
+            jogando = false; // Termina o jogo
             system("clear");
             cout << "\nVocê ganhou!"; // Mensagem de sucesso
             system("read -t 3");
             return 0;
         }
     }    
-    return 0;     // Fim do jogo
+    return 0;
 }
 
 
+#pragma region Funcionalidades
 /*
-// TODO:
-
 - Haverá apenas um jogador jogando sozinho, “contra o programa”. - OK
 
 - Em cada jogada, o jogador informa a posição (linha e coluna) das peças a serem “viradas”(mostradas). - OK
 
-- O programa deve mostrar o valor destas peças. Caso as peças tenham o mesmo valor, estas ficam indisponíveis e aparece a mensagem “JOGADA OK”. Caso contrário, aparece a mensagem "JOGADA NOK”.
+- O programa deve mostrar o valor destas peças. Caso as peças tenham o mesmo valor, estas ficam indisponíveis e aparece a mensagem “JOGADA OK”. Caso contrário, aparece a mensagem "JOGADA NOK”. -OK
 
 - O jogador pode fazer um número de jogadas igual ao triplo dos pares. Por exemplo, para 8 pares, 24 jogadas - OK
 
@@ -215,3 +219,4 @@ int main()
 - No encerramento deve ser apresentada uma mensagem de vitória ou derrota. - OK
 
 */
+#pragma endregion
