@@ -151,8 +151,8 @@ int main()
             if ((posicao_2_linha < 0 || posicao_2_linha > TAM - 1) || (posicao_2_coluna < 0 || posicao_2_coluna > TAM - 1)) {
                 cout <<  "\nEste índice na matriz não existe.\n"; // Mensagem de erro no terminal caso o usuario digite um indice que não existe na matriz.
                 system("read -t 3");
-            } else if (matJogo[posicao_2_linha][posicao_2_coluna] == matGabarito[posicao_2_linha][posicao_2_coluna]) {
-                cout << "\nPosição já escolhida. Por favor, selecione outra\n";
+            } else if (matJogo[posicao_2_linha][posicao_2_coluna] == matGabarito[posicao_2_linha][posicao_2_coluna] || (posicao_2_linha == posicao_1_linha && posicao_2_coluna == posicao_1_coluna)) {
+                cout << "\nPosição já escolhida. Por favor, selecione outra\n"; // Mensagem de erro no terminal caso o usuario digite um indice que já havia informado antes.
                 system("read -t 3");
             } else {
                 digitando = false;
