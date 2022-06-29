@@ -34,7 +34,7 @@ int main()
     int posicao_1_linha, posicao_1_coluna, posicao_2_linha, posicao_2_coluna;
 
     // Define o modo de jogo
-    modoJogo = rand() % 4;   
+    modoJogo = rand() % 4;
 
     switch (modoJogo) {    // 0 - Jogo normal, 1 - Jogo com gabarito, 2 - Jogo com gabarito e jogador, 3 - Jogo com gabarito e jogador e jogador
         case 0: // Modo de jogo: Sem modificação (Cópia)
@@ -87,7 +87,9 @@ int main()
         if(quantidadeJogadas > totalRodadas){ // Se o jogo acabou
             jogando = false;
             system("clear"); // Limpa a tela 
-            cout << "Você perdeu" << endl; // Mensagem de fim de jogo 
+            cout << "-------------------------\n";
+            cout << "\n\tVocê perdeu :(\n"; // Mensagem de fim de jogo
+            cout << "\n-------------------------\n";
             system("read -t 3");
             return 0; // Sai do jogo
         }
@@ -193,30 +195,12 @@ int main()
         if (acertos == TAM * 2) {  
             jogando = false; // Termina o jogo
             system("clear");
-            cout << "\nVocê ganhou!"; // Mensagem de sucesso
+            cout << "-------------------------\n";
+            cout << "\n\tVocê ganhou!\n"; // Mensagem de sucesso
+            cout << "\n-------------------------\n";
             system("read -t 3");
             return 0;
         }
     }    
     return 0;
 }
-
-
-#pragma region Funcionalidades
-/*
-- Haverá apenas um jogador jogando sozinho, “contra o programa”. - OK
-
-- Em cada jogada, o jogador informa a posição (linha e coluna) das peças a serem “viradas”(mostradas). - OK
-
-- O programa deve mostrar o valor destas peças. Caso as peças tenham o mesmo valor, estas ficam indisponíveis e aparece a mensagem “JOGADA OK”. Caso contrário, aparece a mensagem "JOGADA NOK”. -OK
-
-- O jogador pode fazer um número de jogadas igual ao triplo dos pares. Por exemplo, para 8 pares, 24 jogadas - OK
-
-- O jogo encerra quando o jogador encerrar o número de jogadas ou até ele descobrir todos os pares. - OK
-
-- Durante o jogo, o programa deve mostrar quantidade de jogadas realizadas pelo jogador. - OK
-
-- No encerramento deve ser apresentada uma mensagem de vitória ou derrota. - OK
-
-*/
-#pragma endregion
