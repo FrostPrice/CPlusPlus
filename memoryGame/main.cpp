@@ -126,6 +126,7 @@ int main()
                 digitando = false;
             }
         }
+        // endregion: --- Input Usuário
 
         // region: --- Mostra a Matriz Jogo
         system("clear"); // Limpa a tela 
@@ -143,6 +144,8 @@ int main()
         }
         cout << "-------------------------\n";
         // endregion: --- Mostra a Matriz Jogo
+
+        // region: --- Input Usuário
         digitando = true;
         while (digitando) {
             cout << "\nDigite o índice da linha para a segunda posição escolhida: ";
@@ -162,10 +165,10 @@ int main()
         }
         // endregion: --- Input Usuário
 
+        // region: --- Mostra a Matriz Jogo
         system("clear");
         cout << "Você está na rodada " << quantidadeJogadas << " de " << totalRodadas << endl;
         cout << "-------------------------\n";
-        // region: --- Mostra a Matriz Jogo
         for (int i = 0; i < TAM; i++) { 
             for (int j = 0; j < TAM; j++) {
                 if (i == posicao_1_linha && j == posicao_1_coluna) { 
