@@ -10,13 +10,14 @@ int numberSign(int number) {
 }
 
 int main() {
-	setLocale(LC_ALL, "Portuguese");
+	setlocale(LC_ALL, "Portuguese");
 
 	int number;
 
 	cout << "Digite um número: ";
 	cin >> number;
-	numberSign(number);
+	
+	cout << numberSign(number);
 
 	return 0;
 }
