@@ -36,7 +36,7 @@ void tempoFinal(Horario &tempoAdicional, Horario &tempoInicial) {
 	do {
 		cout << "Defina o Segundos adicionais: ";
 		cin >> tempoAdicional.segundo;
-	} while(tempoAdicional.segundo < 0 || tempoAdcicional.segundo > 60);
+	} while(tempoAdicional.segundo < 0 || tempoAdicional.segundo > 60);
 
 	int horaFinal, minutoFinal, segundoFinal;
 
@@ -44,9 +44,9 @@ void tempoFinal(Horario &tempoAdicional, Horario &tempoInicial) {
 	minutoFinal = tempoAdicional.minuto + tempoInicial.minuto;
 	segundoFinal = tempoAdicional.segundo + tempoInicial.segundo;
 
-	if(horaFinal > 24 ) horaFinal -= 24
-	if(minutoFinal > 60 ) minutoFinal -= 60
-	if(segundoFinal > 60 ) segundoFinal -= 60
+	if(horaFinal > 24 ) horaFinal -= 24;
+	if(minutoFinal > 60 ) minutoFinal -= 60;
+	if(segundoFinal > 60 ) segundoFinal -= 60;
 }
 
 int main() {
